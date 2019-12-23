@@ -30,10 +30,25 @@ services:
     networks:
       - db
 
+  kapacitor:
+    image: "kapacitor:latest"
+    restart: unless-stopped
+    volumes:
+      - kapacitor_data:/var/lib/kapacitor
+    ports:
+      - "3003:9092"
+    networks:
+      db:
+        aliases:
+          - kapacitor
+    environment:
+      - KAPACITOR_INFLUXDB_0_URLS_0=http://influxdb:8086
+
 volumes:
   influxdb_data:
   chronograf_data:
   grafana_data:
+  kapacitor_data:
   
 networks:
   db:

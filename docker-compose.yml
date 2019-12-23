@@ -6,7 +6,9 @@ services:
     volumes:
       - influxdb_data:/var/lib/influxdb
     networks:
-      - db
+      db:
+        aliases:
+          - influxdb
 
   chronograph:
     image: "chronograf:latest"

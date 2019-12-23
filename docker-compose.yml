@@ -1,0 +1,36 @@
+version: "3.7"
+services:
+  influxdb:
+    image: "influxdb:latest"
+    restart: unless-stopped
+    volumes:
+      - influxdb_data:/var/lib/influxdb
+    networks:
+      - db
+
+  chronograph:
+    image: "chronograf:latest"
+    restart: unless-stopped
+    volumes:
+      - chronograf_data:/var/lib/chronograf
+    ports:
+      - "3001:8888"
+    networks:
+      - db
+      
+  grafana:
+    image: "grafana/grafana:latest"
+    restart: unless-stopped
+    volumes:
+      - grafana_data:/var/lib/grafana
+    ports:
+      - "3002:3000"
+    networks:
+      - db
+
+volumes:
+  influxdb_data:
+  chronograf_data:
+  
+networks:
+  db:

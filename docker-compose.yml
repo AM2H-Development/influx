@@ -2,6 +2,11 @@ version: "3.7"
 services:
   influxdb:
     image: "influxdb:latest"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
     restart: unless-stopped
     volumes:
       - influxdb_data:/var/lib/influxdb
@@ -12,6 +17,11 @@ services:
 
   chronograph:
     image: "chronograf:latest"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
     restart: unless-stopped
     volumes:
       - chronograf_data:/var/lib/chronograf
@@ -22,6 +32,11 @@ services:
       
   grafana:
     image: "grafana/grafana:latest"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
     restart: unless-stopped
     volumes:
       - grafana_data:/var/lib/grafana
@@ -32,6 +47,11 @@ services:
 
   kapacitor:
     image: "kapacitor:latest"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
     restart: unless-stopped
     volumes:
       - kapacitor_data:/var/lib/kapacitor

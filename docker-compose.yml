@@ -36,29 +36,9 @@ services:
     environment:
       - TZ=Europe/Berlin
 
-  kapacitor:
-    image: "kapacitor:latest"
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "200k"
-        max-file: "10"
-    restart: unless-stopped
-    volumes:
-      - kapacitor_data:/var/lib/kapacitor
-    ports:
-      - "3003:9092"
-    networks:
-      db:
-        aliases:
-          - kapacitor
-    environment:
-      - KAPACITOR_INFLUXDB_0_URLS_0=http://influxdb:8086
-
 volumes:
   influxdb_data:
   grafana_data:
-  kapacitor_data:
   
 networks:
   db:

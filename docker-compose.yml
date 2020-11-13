@@ -9,7 +9,7 @@ services:
         max-file: "10"
     restart: unless-stopped
     volumes:
-      - influxdb_data:/var/lib/influxdb
+      - influxdb_data:/root
     networks:
       db:
         aliases:
@@ -19,21 +19,6 @@ services:
     environment:
       - TZ=Europe/Berlin
 
-  chronograph:
-    image: "chronograf:latest"
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "200k"
-        max-file: "10"
-    restart: unless-stopped
-    volumes:
-      - chronograf_data:/var/lib/chronograf
-    ports:
-      - "3001:8888"
-    networks:
-      - db
-      
   grafana:
     image: "grafana/grafana:latest"
     logging:
@@ -50,7 +35,6 @@ services:
       - db
     environment:
       - TZ=Europe/Berlin
-
 
   kapacitor:
     image: "kapacitor:latest"
@@ -73,7 +57,6 @@ services:
 
 volumes:
   influxdb_data:
-  chronograf_data:
   grafana_data:
   kapacitor_data:
   

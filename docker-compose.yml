@@ -1,7 +1,7 @@
 version: "3.7"
 services:
   influxdb:
-    image: "influxdb:latest"
+    image: "quay.io/influxdb/influxdb:v2.0.1"
     logging:
       driver: "json-file"
       options:
@@ -14,6 +14,8 @@ services:
       db:
         aliases:
           - influxdb
+    environment:
+      - TZ: Europe/Berlin
 
   chronograph:
     image: "chronograf:latest"
@@ -44,6 +46,9 @@ services:
       - "3002:3000"
     networks:
       - db
+    environment:
+      - TZ: Europe/Berlin
+
 
   kapacitor:
     image: "kapacitor:latest"

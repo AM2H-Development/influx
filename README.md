@@ -1,5 +1,7 @@
-# influx with grafana, chronograph, kapacitor
+# influx with grafana, chronograph, kapacitor 2.0.1
 install:
 * git clone https://github.com/AM2H-Development/influx.git
 * cd influx
 * docker-compose up -d
+
+build 20/13/11

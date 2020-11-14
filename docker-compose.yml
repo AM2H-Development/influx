@@ -36,9 +36,25 @@ services:
     environment:
       - TZ=Europe/Berlin
 
+  telegraf:
+    image: "telegraf"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+    restart: unless-stopped
+    volumes:
+      - telegraf_data:/etc/telegraf/
+    networks:
+      - db
+    environment:
+      - TZ=Europe/Berlin
+    
 volumes:
   influxdb_data:
   grafana_data:
+  telegraf_data:
   
 networks:
   db:

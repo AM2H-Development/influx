@@ -1,7 +1,7 @@
 version: "3.7"
 services:
   influxdb:
-    image: "quay.io/influxdb/influxdb:v2.0.1"
+    image: "quay.io/influxdb/influxdb:v2.0.2"
     logging:
       driver: "json-file"
       options:
